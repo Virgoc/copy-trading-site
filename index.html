@@ -1,156 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Virgo Copy Trading Platform</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #eee;
-      display: flex;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Virgo Copy Trading - Trade Like The Pros</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+    line-height: 1.6;
+  }
+  a {
+    color: #4ea8ff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  /* Navbar */
+  nav {
+    background: #0d0d0d;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid #222;
+  }
+  nav .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #4ea8ff;
+    cursor: pointer;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+  nav ul li {
+    cursor: pointer;
+  }
+  nav ul li:hover {
+    color: #72b1ff;
+  }
+  /* Hero */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    color: #bbb;
+    margin-bottom: 30px;
+    max-width: 650px;
+  }
+  .btn-primary {
+    background-color: #4ea8ff;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #3a74c7;
+  }
+  /* Live Trade Ticker */
+  .trade-ticker {
+    background: #222;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 5px;
+    margin: 40px auto 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    user-select: none;
+  }
+  /* TradingView Widget */
+  .tradingview-widget-container {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(78,168,255,0.4);
+    height: 400px;
+  }
+  /* Features Section */
+  section.features {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  section.features h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .feature-cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .feature-card {
+    background: #1b1b1b;
+    border-radius: 15px;
+    flex: 1 1 280px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(78,168,255,0.1);
+    transition: transform 0.3s ease;
+  }
+  .feature-card:hover {
+    transform: translateY(-10px);
+  }
+  .feature-card h3 {
+    margin-bottom: 15px;
+    color: #4ea8ff;
+  }
+  .feature-card p {
+    color: #ccc;
+  }
+  /* Testimonials Section */
+  section.testimonials {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+    text-align: center;
+  }
+  section.testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .testimonial {
+    background: #1b1b1b;
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 0 15px rgba(78,168,255,0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .testimonial p {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 15px;
+  }
+  .testimonial .author {
+    font-weight: 700;
+    color: #4ea8ff;
+  }
+  /* Pricing Section */
+  section.pricing {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  section.pricing h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .pricing-cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pricing-card {
+    background: #1b1b1b;
+    border-radius: 15px;
+    flex: 1 1 280px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(78,168,255,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .pricing-card:hover {
+    transform: translateY(-10px);
+  }
+  .pricing-card h3 {
+    color: #4ea8ff;
+    margin-bottom: 20px;
+  }
+  .pricing-card .price {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .pricing-card ul {
+    list-style: none;
+    margin-bottom: 25px;
+  }
+  .pricing-card ul li {
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+  .pricing-card button {
+    background-color: #4ea8ff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  .pricing-card button:hover {
+    background-color: #3a74c7;
+  }
+  /* FAQ Section */
+  section.faq {
+    max-width: 900px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  section.faq h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .faq-item {
+    background: #1b1b1b;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    padding: 20px 25px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(78,168,255,0.1);
+  }
+  .faq-item h3 {
+    color: #4ea8ff;
+    font-weight: 600;
+  }
+  .faq-item p {
+    margin-top: 10px;
+    color: #ccc;
+    display: none;
+  }
+  /* Footer */
+  footer {
+    background: #0d0d0d;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    border-top: 1px solid #222;
+  }
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav ul {
+      gap: 15px;
+    }
+    .feature-cards, .pricing-cards {
       flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      text-align: center;
+      gap: 20px;
     }
-    h1 {
-      font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 0.2em;
-    }
-    p.subtitle {
-      font-size: 1.2rem;
-      color: #bbb;
-      margin-top: 0;
-      margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .btn-get-started {
-      background-color: #4ea8ff;
-      color: white;
-      padding: 15px 40px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      margin-bottom: 40px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-    }
-    .btn-get-started:hover {
-      background-color: #3a74c7;
-    }
-    .trade-ticker {
-      background: #222;
-      color: #0f0;
-      padding: 10px 20px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.1rem;
-      width: 100%;
-      max-width: 700px;
-      overflow: hidden;
-      white-space: nowrap;
-      border-radius: 5px;
-      box-sizing: border-box;
-      margin-bottom: 30px;
-      user-select: none;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tradingview-widget-container {
-      width: 100%;
-      max-width: 900px;
-      height: 400px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(0,255,0,0.3);
-      margin-left: auto;
-      margin-right: auto;
-    }
-    a {
-      color: #4ea8ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <h1>Welcome to Virgo Copy Trading Platform</h1>
-  <p class="subtitle">
-    Trade like the pros and grow your portfolio easily.<br />
-    Connect your brokerage account, choose your favorite expert trader, and let our platform mirror their trades in real-time.
-  </p>
+<nav>
+  <div class="logo">Virgo Copy Trading</div>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="signup.html">Sign Up</a></li>
+  </ul>
+</nav>
 
-  <a href="signup.html" class="btn-get-started">Get Started Now</a>
+<section class="hero" id="hero">
+  <h1>Trade Like The Pros & Grow Your Portfolio</h1>
+  <p>Connect your brokerage account, choose your expert trader, and mirror their trades in real-time with our easy-to-use platform.</p>
+  <button class="btn-primary" onclick="window.location.href='signup.html'">Get Started Now</button>
+</section>
 
-  <!-- Live Trade Ticker -->
-  <div class="trade-ticker" id="tradeTicker">Loading live trades...</div>
+<div class="trade-ticker" id="tradeTicker">Loading live trades...</div>
 
-  <!-- TradingView Widget -->
-  <div class="tradingview-widget-container">
-    <div id="tradingview_12345"></div>
-    <div class="tradingview-widget-copyright" style="color:#888; font-size:12px; text-align:center; margin-top: 5px;">
-      <a href="https://www.tradingview.com" rel="noopener" target="_blank">Stock Market Chart</a> by TradingView
-    </div>
+<div class="tradingview-widget-container">
+  <div id="tradingview_abcde"></div>
+  <div style="color:#888; font-size:12px; text-align:center; margin-top: 5px;">
+    <a href="https://www.tradingview.com" target="_blank" rel="noopener" style="color:#888;">Stock Market Chart</a> by TradingView
   </div>
+</div>
 
-  <!-- TradingView Script -->
-  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-  <script type="text/javascript">
-    new TradingView.widget({
-      "autosize": true,
-      "symbol": "NASDAQ:AAPL",
-      "interval": "D",
-      "timezone": "Etc/UTC",
-      "theme": "dark",
-      "style": "1",
-      "locale": "en",
-      "toolbar_bg": "#121212",
-      "enable_publishing": false,
-      "withdateranges": true,
-      "hide_side_toolbar": false,
-      "allow_symbol_change": true,
-      "container_id": "tradingview_12345"
-    });
-  </script>
-
-  <!-- Live Trade Ticker Script -->
-  <script>
-    const trades = [
-      "BUY BTC/USD 0.5 @ $29,800",
-      "SELL ETH/USD 1.2 @ $1,850",
-      "BUY AAPL 50 shares @ $135.20",
-      "SELL TSLA 10 shares @ $750.00",
-      "BUY EUR/USD 1 lot @ 1.1050",
-      "SELL GBP/USD 2 lots @ 1.2550",
-      "BUY BTC/USD 0.3 @ $29,950",
-      "SELL ETH/USD 0.7 @ $1,830",
-      "BUY AAPL 30 shares @ $136.00",
-      "SELL TSLA 5 shares @ $745.50"
-    ];
-
-    const tickerElement = document.getElementById('tradeTicker');
-    let tradeIndex = 0;
-
-    function updateTicker() {
-      tickerElement.textContent = trades[tradeIndex];
-      tradeIndex = (tradeIndex + 1) % trades.length;
-    }
-
-    setInterval(updateTicker, 3000);
-    updateTicker();
-  </script>
-
-</body>
-</html>
+<section class="features" id="features">
+  <h2>Why Choose Virgo Copy Trading?</h2>
+  <div class="feature
