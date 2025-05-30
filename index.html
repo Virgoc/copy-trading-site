@@ -13,67 +13,82 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      background: #f7f9fc;
-      color: #222;
+      background: #f9fafb;
+      color: #1f2937;
       line-height: 1.6;
     }
     header {
-      background: #1f2937;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
       color: white;
-      padding: 2rem;
+      padding: 4rem 2rem;
       text-align: center;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
     header p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
     }
     .cta-buttons {
-      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
     .cta-buttons a {
-      margin: 0.5rem;
-      padding: 0.8rem 1.4rem;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
+      background: #fff;
+      color: #2563eb;
+      padding: 0.75rem 1.5rem;
       border-radius: 6px;
-      display: inline-block;
+      text-decoration: none;
       font-weight: 600;
+      transition: background 0.3s;
+    }
+    .cta-buttons a:hover {
+      background: #e0e7ff;
     }
     .section {
-      padding: 3rem 1rem;
-      max-width: 960px;
+      padding: 4rem 2rem;
+      max-width: 1200px;
       margin: auto;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
     }
     .feature {
       background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
     }
     .feature h3 {
-      margin-bottom: 0.5rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #1f2937;
-      color: white;
-      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: #1e3a8a;
     }
     iframe {
       border: none;
       width: 100%;
-      height: 400px;
-      margin-top: 2rem;
+      height: 420px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1e3a8a;
+      color: white;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -82,10 +97,10 @@
     <h1>HMG Copy Trading</h1>
     <p>A trading platform for online trading and investments from the broker HMG COPY TRADING. Start earning money with millions of traders worldwide!</p>
     <div class="cta-buttons">
-      <a href="#register">Register Now</a>
+      <a href="#register">Register</a>
       <a href="#login">Login</a>
-      <a href="#copy-trading">Start Copy Trading</a>
-      <a href="#dashboard">View Dashboard</a>
+      <a href="#copy-trading">Copy Trading</a>
+      <a href="#dashboard">Dashboard</a>
     </div>
   </header>
 
@@ -94,19 +109,19 @@
     <div class="features">
       <div class="feature">
         <h3>Real-Time Copy Trading</h3>
-        <p>Follow and copy top-performing traders with a single click.</p>
+        <p>Connect with experienced traders and mirror their trades instantly.</p>
       </div>
       <div class="feature">
-        <h3>Live Market Data</h3>
-        <p>Access real-time crypto, forex, and stock price feeds directly on your dashboard.</p>
+        <h3>Live Market Prices</h3>
+        <p>Track cryptocurrency, stock, and forex markets all in one place.</p>
       </div>
       <div class="feature">
-        <h3>User-Friendly Dashboard</h3>
-        <p>Track your investments, performance, and copy trading activity with ease.</p>
+        <h3>Advanced Dashboard</h3>
+        <p>Access all your performance analytics, trade history, and profit reports.</p>
       </div>
       <div class="feature">
-        <h3>Secure & Fast Withdrawals</h3>
-        <p>Withdraw profits quickly with our fast and secure payment system.</p>
+        <h3>Trusted and Secure</h3>
+        <p>Top-notch security to protect your investments and personal data.</p>
       </div>
     </div>
   </section>
@@ -117,7 +132,7 @@
   </section>
 
   <section class="section">
-    <h2>Live Stock & Forex Charts</h2>
+    <h2>Live Market Charts</h2>
     <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_d63b5&symbol=NASDAQ%3AAAPL&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=Light&style=1&timezone=Etc%2FUTC&hideideas=1" allowtransparency="true" scrolling="no"></iframe>
   </section>
 
@@ -125,5 +140,4 @@
     <p>&copy; 2025 HMG Copy Trading. All rights reserved.</p>
   </footer>
 </body>
-      </html>
-      
+</html>
