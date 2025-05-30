@@ -48,6 +48,7 @@
       margin-left: 25px;
       font-weight: 600;
       font-size: 16px;
+      cursor: pointer;
     }
 
     /* Hero */
@@ -226,6 +227,9 @@
       justify-content: center;
       align-items: center;
     }
+    #signupModal.show {
+      display: flex;
+    }
     #signupModal > div {
       background: white;
       border-radius: 15px;
@@ -235,7 +239,7 @@
       position: relative;
       box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
-    #signupModal #closeModal {
+    #closeModal {
       position: absolute;
       top: 15px; right: 20px;
       font-size: 26px;
@@ -301,40 +305,3 @@
 
 <header>
   <h1>Virgo COPY TRADING</h1>
-  <nav>
-    <a href="#hero">Home</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#faq">FAQ</a>
-    <a href="#" id="navSignupBtn">Sign Up</a>
-  </nav>
-</header>
-
-<section id="hero">
-  <h2>Trade Like The Pros With Virgo COPY TRADING</h2>
-  <p>Join thousands of traders worldwide. Copy expert trades automatically and grow your portfolio.</p>
-  <button id="heroSignupBtn">Get Started Now</button>
-</section>
-
-<section id="features">
-  <h3>Why Choose Virgo COPY TRADING?</h3>
-  <ul>
-    <li><strong>Real-time Trade Copying:</strong> Automatically mirror expert traders’ moves without lifting a finger.</li>
-    <li><strong>Trusted Broker:</strong> Safe and regulated trading platform.</li>
-    <li><strong>Easy Setup:</strong> Connect your account in minutes, no complex setup required.</li>
-    <li><strong>Flexible Control:</strong> Choose who to follow and adjust anytime.</li>
-  </ul>
-</section>
-
-<section id="pricing">
-  <h3>Pricing Plans</h3>
-  <div>
-    <h4>Free Trial - 30 Days</h4>
-    <p>Start your journey risk-free. Experience full access to all features.</p>
-    <div class="price">Free</div>
-    <button id="pricingSignupBtn">Sign Up Now</button>
-  </div>
-</section>
-
-<section id="faq">
-  <h3>Frequently Asked Questions</h3>
