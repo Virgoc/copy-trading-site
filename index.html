@@ -3,434 +3,512 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Virgoc Copy Trading</title>
+  <title>Virgo Copy Trading Platform</title>
   <style>
-    /* Reset */
+    /* Reset and base */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
     }
     body {
-      background: #f9f9f9;
-      color: #222;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0f27;
+      color: #fff;
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     a {
-      color: #0066ff;
+      color: #1dd1a1;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-    button {
-      cursor: pointer;
-      background-color: #0066ff;
-      border: none;
-      color: white;
-      padding: 10px 25px;
-      border-radius: 5px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #004bb5;
-    }
 
     header {
-      background: #111;
-      color: white;
-      padding: 20px 10%;
+      background: #0a0f27;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid #111a44;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 10;
     }
     header h1 {
-      font-size: 1.8rem;
-      letter-spacing: 3px;
-      font-weight: 900;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #1dd1a1;
     }
-    nav a {
-      margin-left: 20px;
+    nav button {
+      background: #1dd1a1;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
       font-weight: 600;
+      cursor: pointer;
+      color: #0a0f27;
+      transition: background 0.3s;
+      margin-left: 1rem;
+    }
+    nav button:hover {
+      background: #14a37f;
     }
 
-    /* Hero */
-    #hero {
-      background: linear-gradient(135deg, #0066ff, #004bb5);
-      color: white;
-      padding: 80px 10%;
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      width: 95%;
+    }
+    .hero {
       text-align: center;
+      margin-bottom: 3rem;
     }
-    #hero h2 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      font-weight: 900;
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #1dd1a1;
     }
-    #hero p {
-      font-size: 1.3rem;
-      margin-bottom: 30px;
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #cdd6f4;
+    }
+    .hero .btn-group button {
+      font-size: 1.1rem;
+      margin: 0 0.5rem;
+      min-width: 120px;
     }
 
-    /* Live trades ticker */
-    #live-trades {
-      background: #222;
-      color: #0f0;
-      padding: 15px 10%;
+    /* Live trade ticker */
+    .trade-ticker {
+      background: #111a44;
+      padding: 0.75rem 1rem;
+      overflow: hidden;
+      white-space: nowrap;
+      border-radius: 5px;
+      margin-bottom: 3rem;
       font-family: monospace;
       font-weight: 600;
-      font-size: 1.1rem;
-      white-space: nowrap;
-      overflow: hidden;
-      box-sizing: border-box;
-    }
-    #trade-ticker {
-      display: inline-block;
-      animation: tickerAnim 12s linear infinite;
-      padding-left: 100%;
-    }
-    @keyframes tickerAnim {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    /* Section styles */
-    section {
-      padding: 50px 10%;
-    }
-
-    /* Traders showcase */
-    #traders {
-      background: white;
-      text-align: center;
-    }
-    #traders h3 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-      font-weight: 700;
-    }
-    .trader-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-    .trader {
-      background: #f0f0f0;
-      border-radius: 15px;
-      padding: 20px;
-      max-width: 250px;
-      flex: 1 1 200px;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
-      transition: transform 0.3s ease;
-    }
-    .trader:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
-    }
-    .trader img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      margin-bottom: 15px;
-    }
-    .trader h4 {
-      margin-bottom: 8px;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-    .trader p {
-      font-style: italic;
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    /* Features */
-    #features {
-      background: #f5faff;
-      text-align: center;
-    }
-    #features h3 {
-      font-size: 2rem;
-      margin-bottom: 40px;
-      font-weight: 700;
-    }
-    .features-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-    }
-    .feature {
-      max-width: 300px;
-      background: white;
-      padding: 30px 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
-      flex: 1 1 250px;
-      transition: box-shadow 0.3s ease;
-    }
-    .feature:hover {
-      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
-    }
-    .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #0066ff;
-    }
-    .feature h4 {
-      margin-bottom: 15px;
-      font-weight: 700;
-      font-size: 1.3rem;
-    }
-    .feature p {
-      color: #555;
       font-size: 1rem;
+      color: #a4b0be;
+      user-select: none;
+    }
+    .trade-ticker span {
+      display: inline-block;
+      padding-right: 3rem;
+      animation: ticker 20s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Chart container */
+    .chart-container {
+      background: #0f1735;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 0 10px #0f1735;
+    }
+    canvas {
+      width: 100% !important;
+      height: 350px !important;
+      border-radius: 8px;
+    }
+
+    /* Features section */
+    .features {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      margin-bottom: 3rem;
+      color: #cdd6f4;
+    }
+    .feature-item {
+      background: #111a44;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #0a0f27;
+      transition: transform 0.3s;
+    }
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #1dd1a1;
+    }
+    .feature-item h3 {
+      margin-bottom: 0.75rem;
+      color: #1dd1a1;
+    }
+    .feature-item p {
+      font-size: 0.95rem;
+      line-height: 1.3;
     }
 
     /* Footer */
     footer {
-      background: #111;
-      color: white;
-      padding: 30px 10%;
+      background: #0a0f27;
       text-align: center;
+      padding: 1rem;
       font-size: 0.9rem;
-      margin-top: auto;
-    }
-    footer a {
-      color: #66aaff;
-      margin: 0 10px;
-      font-weight: 600;
+      color: #444d6e;
+      border-top: 1px solid #111a44;
     }
 
-    /* Signup Modal */
+    /* Modal styles */
     .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 2000; 
-      left: 0;
-      top: 0;
-      width: 100%; 
-      height: 100%;
-      overflow: auto; 
-      background-color: rgba(0,0,0,0.6); 
+      display: none;
+      position: fixed;
+      z-index: 20;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
       align-items: center;
       justify-content: center;
     }
     .modal-content {
-      background-color: #fff;
+      background-color: #0a0f27;
       margin: auto;
+      padding: 2rem;
       border-radius: 10px;
-      padding: 30px 40px;
+      width: 90%;
       max-width: 400px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px #1dd1a1;
       position: relative;
+      color: #cdd6f4;
     }
     .close-btn {
+      color: #888;
       position: absolute;
-      top: 15px;
-      right: 20px;
+      right: 1rem;
+      top: 1rem;
       font-size: 1.5rem;
-      font-weight: 700;
-      color: #333;
       cursor: pointer;
+      transition: color 0.3s;
     }
-    .modal-content h3 {
-      margin-bottom: 20px;
-      font-weight: 700;
+    .close-btn:hover {
+      color: #1dd1a1;
     }
-    .modal-content label {
-      display: block;
-      margin: 15px 0 5px;
-      font-weight: 600;
+    form {
+      display: flex;
+      flex-direction: column;
     }
-    .modal-content input[type="text"],
-    .modal-content input[type="email"],
-    .modal-content input[type="password"] {
-      width: 100%;
-      padding: 8px 12px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
+    input[type="text"], input[type="email"], input[type="password"] {
+      padding: 0.7rem 1rem;
+      margin-bottom: 1rem;
       border-radius: 5px;
+      border: none;
       font-size: 1rem;
     }
-    .modal-content button {
-      width: 100%;
-      margin-top: 15px;
+    input[type="submit"] {
+      background: #1dd1a1;
+      border: none;
+      padding: 0.75rem;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #0a0f27;
+      font-size: 1.1rem;
+      transition: background 0.3s;
+    }
+    input[type="submit"]:hover {
+      background: #14a37f;
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
-      #hero h2 {
+    @media (max-width: 600px) {
+      .hero h2 {
         font-size: 2rem;
       }
-      .features-list, .trader-list {
-        flex-direction: column;
-        gap: 20px;
-      }
-      header {
-        flex-direction: column;
-        gap: 10px;
-      }
-      nav a {
-        margin-left: 0;
-        margin-right: 15px;
+      nav button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Virgo Copy Trading</h1>
+    <nav>
+      <button id="btnLogin">Login</button>
+      <button id="btnSignup">Get Started</button>
+    </nav>
+  </header>
 
-<header>
-  <h1>Virgoc</h1>
-  <nav>
-    <a href="#hero">Home</a>
-    <a href="#features">Features</a>
-    <a href="#traders">Traders</a>
-    <a href="#" id="openSignupBtn">Sign Up</a>
-  </nav>
-</header>
+  <main>
+    <section class="hero">
+      <h2>Trade Like The Pros. Grow Your Portfolio Effortlessly.</h2>
+      <p>Connect your brokerage account, choose expert traders, and mirror their trades in real-time on our platform.</p>
+      <div class="btn-group">
+        <button id="btnHeroSignup">Get Started</button>
+        <button id="btnHeroLogin">Login</button>
+      </div>
+    </section>
 
-<section id="hero">
-  <h2>A trading platform for online trading and investments from the broker VIRGOC COPY TRADING</h2>
-  <p>Start earning money with millions of traders worldwide!</p>
-  <button id="getStartedBtn">Get Started Now</button>
-</section>
+    <section class="trade-ticker" aria-label="Live trade feed" role="marquee">
+      <span id="tickerText">Loading live trades...</span>
+    </section>
 
-<section id="live-trades">
-  <div id="trade-ticker">Loading live trades...</div>
-</section>
+    <section class="chart-container" aria-label="Live trading chart">
+      <canvas id="liveChart"></canvas>
+    </section>
 
-<section id="features">
-  <h3>Why Choose Virgoc Copy Trading?</h3>
-  <div class="features-list">
-    <div class="feature">
-      <div class="feature-icon">🤝</div>
-      <h4>Copy Pro Traders</h4>
-      <p>Mirror successful expert traders’ moves automatically.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">⚡</div>
-      <h4>Real-Time Execution</h4>
-      <p>Trades are copied instantly with zero delay.</p>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🔒</div>
-      <h4>Secure & Private</h4>
-      <p>Your data and funds remain safe and confidential.</p>
+    <section class="features" aria-label="Platform features">
+      <div class="feature-item">
+        <h3>Mirror Trades Instantly</h3>
+        <p>Automatically copy top trader strategies in real-time to your account without lifting a finger.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Secure & Reliable</h3>
+        <p>Bank-grade security and robust infrastructure protect your funds and data 24/7.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Real-Time Analytics</h3>
+        <p>Track your portfolio performance and live trades with powerful, easy-to-use dashboards.</p>
+      </div>
+      <div class="feature-item">
+        <h3>Multi-Broker Support</h3>
+        <p>Connect with multiple brokerage accounts for diversified copy trading strategies.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Virgo Copy Trading. All rights reserved.
+  </footer>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+    <div class="modal-content">
+      <span class="close-btn" id="closeSignup">&times;</span>
+      <h2 id="signupTitle">Create Your Account</h2>
+      <form id="signupForm" action="https://formspree.io/f/meokjgnl" method="POST">
+        <input type="text" name="username" placeholder="Username" required autocomplete="username" />
+        <input type="email" name="email" placeholder="Email" required autocomplete="email" />
+        <input type="password" name="password" placeholder="Password" required autocomplete="new-password" />
+        <input type="submit" value="Sign Up" />
+      </form>
     </div>
   </div>
-</section>
 
-<section id="traders">
-  <h3>Meet Some of Our Top Traders</h3>
-  <div class="trader-list">
-    <div class="trader">
-      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Trader John" />
-      <h4>John D.</h4>
-      <p>"Virgoc helped me grow my account 5x in 6 months."</p>
-    </div>
-    <div class="trader">
-      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Trader Lisa" />
-      <h4>Lisa M.</h4>
-      <p>"The live copying is seamless and effortless."</p>
-    </div>
-    <div class="trader">
-      <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="Trader Mike" />
-      <h4>Mike S.</h4>
-      <p>"I love the community and support from Virgoc."</p>
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-content">
+      <span class="close-btn" id="closeLogin">&times;</span>
+      <h2 id="loginTitle">Login to Your Account</h2>
+      <form id="loginForm">
+        <input type="text" name="username" placeholder="Username" required autocomplete="username" />
+        <input type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+        <input type="submit" value="Login" />
+      </form>
     </div>
   </div>
-</section>
 
-<footer>
-  <p>Contact us: support@virgoc.com | Follow us: 
-    <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
-  </p>
-  <p>© 2025 Virgoc Copy Trading. All rights reserved.</p>
-</footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Modal open/close logic
+    const signupModal = document.getElementById('signupModal');
+    const loginModal = document.getElementById('loginModal');
 
-<!-- Signup Modal -->
-<div id="signupModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" id="closeSignup">&times;</span>
-    <h3>Sign Up</h3>
-    <form action="https://formspree.io/f/meokjgnl" method="POST">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
-      
-      <label for="email">Email</label>
-      <input type="email" id="email" name="_replyto" required />
-      
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
-      
-      <button type="submit">Create Account</button>
-    </form>
-  </div>
-</div>
+    document.getElementById('btnSignup').onclick = () => signupModal.style.display = 'flex';
+    document.getElementById('btnLogin').onclick = () => loginModal.style.display = 'flex';
+    document.getElementById('btnHeroSignup').onclick = () => signupModal.style.display = 'flex';
+    document.getElementById('btnHeroLogin').onclick = () => loginModal.style.display = 'flex';
 
-<script>
-  // Live trade ticker scroll text (looping through messages)
-  const trades = [
-    "User123 bought 100 shares of XYZ at $50.23",
-    "TraderMike copied trade: Sell 50 shares of ABC at $12.10",
-    "Anna opened a new position: 200 shares of DEF at $23.45",
-    "CopyTraderJoe earned +3.2% in last 10 minutes",
-    "New copy trade started by Sarah on GHI",
-    "Mark closed a profitable trade on JKL",
-    "Emily copied a new trade in real-time"
-  ];
-  const ticker = document.getElementById('trade-ticker');
-  let tickerIndex = 0;
-  
-  function updateTicker() {
-    ticker.textContent = trades[tickerIndex];
-    tickerIndex = (tickerIndex + 1) % trades.length;
-  }
-  
-  updateTicker();
-  setInterval(updateTicker, 4000);
+    document.getElementById('closeSignup').onclick = () => signupModal.style.display = 'none';
+    document.getElementById('closeLogin').onclick = () => loginModal.style.display = 'none';
 
-  // Signup modal open/close
-  const signupModal = document.getElementById('signupModal');
-  const openSignupBtn = document.getElementById('openSignupBtn');
-  const closeSignupBtn = document.getElementById('closeSignup');
-
-  openSignupBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    signupModal.style.display = 'flex';
-  });
-
-  closeSignupBtn.addEventListener('click', () => {
-    signupModal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-    if (e.target === signupModal) {
-      signupModal.style.display = 'none';
+    window.onclick = (event) => {
+      if(event.target === signupModal) signupModal.style.display = 'none';
+      if(event.target === loginModal) loginModal.style.display = 'none';
     }
-  });
 
-  // Get Started button opens signup modal too
-  const getStartedBtn = document.getElementById('getStartedBtn');
-  getStartedBtn.addEventListener('click', () => {
-    signupModal.style.display = 'flex';
-  });
-</script>
+    // Fake live trades ticker data (simulate live trades)
+    const trades = [
+      "BUY BTC/USD 0.5 @ $29,800",
+      "SELL ETH/USD 1.2 @ $1,850",
+      "BUY AAPL 50 shares @ $135.20",
+      "SELL TSLA 10 shares @ $750.00",
+      "BUY EUR/USD 1 lot @ 1.1050",
+      "SELL GBP/USD 2 lots @ 1.2550",
+      "BUY BTC/USD 0.3 @ $29,950",
+      "SELL ETH/USD 0.7 @ $1,830",
+      "BUY AAPL 30 shares @ $136.00",
+      "SELL TSLA 5 shares @ $745.50"
+    ];
 
+    const tickerText = document.getElementById('tickerText');
+    let tradeIndex = 0;
+    function updateTicker() {
+      tickerText.textContent = trades[tradeIndex];
+      tradeIndex = (tradeIndex + 1) % trades.length;
+    }
+    setInterval(updateTicker, 3000);
+    updateTicker();
+
+    // Setup Chart.js candlestick chart simulation
+    // We will simulate random candlestick data every few seconds
+
+    const ctx = document.getElementById('liveChart').getContext('2d');
+
+    // Simple candlestick chart with Chart.js requires a plugin — we can simulate OHLC with bar chart here
+
+    // For demo, use bar chart with random data changing every 5 seconds
+
+    const generateRandomOHLC = () => {
+      const open = Math.random() * 100 + 1000;
+      const close = open + (Math.random() - 0.5) * 20;
+      const high = Math.max(open, close) + Math.random() * 10;
+      const low = Math.min(open, close) - Math.random() * 10;
+      return {open, close, high, low};
+    };
+
+    let labels = [];
+    let opens = [];
+    let closes = [];
+    let highs = [];
+    let lows = [];
+
+    for(let i = 9; i >= 0; i--) {
+      const ohlc = generateRandomOHLC();
+      labels.push(`${i}m ago`);
+      opens.push(ohlc.open);
+      closes.push(ohlc.close);
+      highs.push(ohlc.high);
+      lows.push(ohlc.low);
+    }
+    labels.reverse();
+
+    const chartData = {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Open',
+          data: opens,
+          borderColor: '#1dd1a1',
+          borderWidth: 2,
+          fill: false,
+          type: 'line',
+          tension: 0.3,
+          pointRadius: 0,
+        },
+        {
+          label: 'Close',
+          data: closes,
+          borderColor: '#10ac84',
+          borderWidth: 2,
+          fill: false,
+          type: 'line',
+          tension: 0.3,
+          pointRadius: 0,
+        },
+        {
+          label: 'High',
+          data: highs,
+          borderColor: '#54a0ff',
+          borderWidth: 1,
+          borderDash: [5,5],
+          fill: false,
+          type: 'line',
+          pointRadius: 0,
+        },
+        {
+          label: 'Low',
+          data: lows,
+          borderColor: '#576574',
+          borderWidth: 1,
+          borderDash: [5,5],
+          fill: false,
+          type: 'line',
+          pointRadius: 0,
+        },
+      ]
+    };
+
+    const chartOptions = {
+      responsive: true,
+      animation: false,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          grid: {
+            color: '#111a44'
+          },
+          ticks: {
+            color: '#a4b0be'
+          }
+        },
+        y: {
+          grid: {
+            color: '#111a44'
+          },
+          ticks: {
+            color: '#a4b0be'
+          }
+        }
+      }
+    };
+
+    const liveChart = new Chart(ctx, {
+      type: 'line',
+      data: chartData,
+      options: chartOptions
+    });
+
+    // Update chart with new data every 5 seconds
+    setInterval(() => {
+      // Remove oldest data
+      labels.shift();
+      opens.shift();
+      closes.shift();
+      highs.shift();
+      lows.shift();
+
+      // Add new random OHLC data
+      const ohlc = generateRandomOHLC();
+      labels.push('Now');
+      opens.push(ohlc.open);
+      closes.push(ohlc.close);
+      highs.push(ohlc.high);
+      lows.push(ohlc.low);
+
+      liveChart.update();
+    }, 5000);
+
+    // Signup form submit with Formspree
+    document.getElementById('signupForm').addEventListener('submit', e => {
+      // The form posts to Formspree automatically
+      alert('Thank you for signing up! We will contact you soon.');
+      signupModal.style.display = 'none';
+      e.preventDefault();
+    });
+
+    // Login form submit placeholder
+    document.getElementById('loginForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Login feature coming soon!');
+      loginModal.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
