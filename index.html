@@ -1,314 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Virgo Copy Trading - Trade Like The Pros</title>
-<style>
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #121212;
-    color: #eee;
-    line-height: 1.6;
-  }
-  a {
-    color: #4ea8ff;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  /* Navbar */
-  nav {
-    background: #0d0d0d;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    border-bottom: 1px solid #222;
-  }
-  nav .logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #4ea8ff;
-    cursor: pointer;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
-  nav ul li {
-    cursor: pointer;
-  }
-  nav ul li:hover {
-    color: #72b1ff;
-  }
-  /* Hero */
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 80px 20px 60px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-  }
-  .hero p {
-    font-size: 1.2rem;
-    color: #bbb;
-    margin-bottom: 30px;
-    max-width: 650px;
-  }
-  .btn-primary {
-    background-color: #4ea8ff;
-    color: white;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .btn-primary:hover {
-    background-color: #3a74c7;
-  }
-  /* Live Trade Ticker */
-  .trade-ticker {
-    background: #222;
-    color: #0f0;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.1rem;
-    padding: 15px 20px;
-    width: 90%;
-    max-width: 700px;
-    border-radius: 5px;
-    margin: 40px auto 60px;
-    white-space: nowrap;
-    overflow: hidden;
-    user-select: none;
-  }
-  /* TradingView Widget */
-  .tradingview-widget-container {
-    max-width: 900px;
-    margin: 0 auto 60px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgba(78,168,255,0.4);
-    height: 400px;
-  }
-  /* Features Section */
-  section.features {
-    max-width: 1000px;
-    margin: 0 auto 80px;
-    padding: 0 20px;
-  }
-  section.features h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .feature-cards {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .feature-card {
-    background: #1b1b1b;
-    border-radius: 15px;
-    flex: 1 1 280px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(78,168,255,0.1);
-    transition: transform 0.3s ease;
-  }
-  .feature-card:hover {
-    transform: translateY(-10px);
-  }
-  .feature-card h3 {
-    margin-bottom: 15px;
-    color: #4ea8ff;
-  }
-  .feature-card p {
-    color: #ccc;
-  }
-  /* Testimonials Section */
-  section.testimonials {
-    max-width: 900px;
-    margin: 0 auto 80px;
-    padding: 0 20px;
-    text-align: center;
-  }
-  section.testimonials h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-  .testimonial {
-    background: #1b1b1b;
-    border-radius: 15px;
-    padding: 25px 30px;
-    box-shadow: 0 0 15px rgba(78,168,255,0.1);
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .testimonial p {
-    font-style: italic;
-    color: #ccc;
-    margin-bottom: 15px;
-  }
-  .testimonial .author {
-    font-weight: 700;
-    color: #4ea8ff;
-  }
-  /* Pricing Section */
-  section.pricing {
-    max-width: 1000px;
-    margin: 0 auto 80px;
-    padding: 0 20px;
-  }
-  section.pricing h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .pricing-cards {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .pricing-card {
-    background: #1b1b1b;
-    border-radius: 15px;
-    flex: 1 1 280px;
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(78,168,255,0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  .pricing-card:hover {
-    transform: translateY(-10px);
-  }
-  .pricing-card h3 {
-    color: #4ea8ff;
-    margin-bottom: 20px;
-  }
-  .pricing-card .price {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  .pricing-card ul {
-    list-style: none;
-    margin-bottom: 25px;
-  }
-  .pricing-card ul li {
-    margin-bottom: 10px;
-    color: #ccc;
-  }
-  .pricing-card button {
-    background-color: #4ea8ff;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  .pricing-card button:hover {
-    background-color: #3a74c7;
-  }
-  /* FAQ Section */
-  section.faq {
-    max-width: 900px;
-    margin: 0 auto 80px;
-    padding: 0 20px;
-  }
-  section.faq h2 {
-    font-size: 2rem;
-    margin-bottom: 40px;
-    text-align: center;
-  }
-  .faq-item {
-    background: #1b1b1b;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    padding: 20px 25px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(78,168,255,0.1);
-  }
-  .faq-item h3 {
-    color: #4ea8ff;
-    font-weight: 600;
-  }
-  .faq-item p {
-    margin-top: 10px;
-    color: #ccc;
-    display: none;
-  }
-  /* Footer */
-  footer {
-    background: #0d0d0d;
-    padding: 30px 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    border-top: 1px solid #222;
-  }
-  /* Responsive */
-  @media (max-width: 768px) {
-    nav ul {
-      gap: 15px;
-    }
-    .feature-cards, .pricing-cards {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HMG Copy Trading</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
     }
-  }
-</style>
+    .screenshot {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    img {
+      width: 100%;
+      display: block;
+    }
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
+  <h1>HMG Copy Trading</h1>
 
-<nav>
-  <div class="logo">Virgo Copy Trading</div>
-  <ul>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="signup.html">Sign Up</a></li>
-  </ul>
-</nav>
+  <div class="screenshot"><img src="1000038312.jpg" alt="Screenshot 1" /></div>
+  <div class="screenshot"><img src="1000038313.jpg" alt="Screenshot 2" /></div>
+  <div class="screenshot"><img src="1000038314.jpg" alt="Screenshot 3" /></div>
+  <div class="screenshot"><img src="1000038316.jpg" alt="Screenshot 4" /></div>
+  <div class="screenshot"><img src="1000038317.jpg" alt="Screenshot 5" /></div>
+  <div class="screenshot"><img src="1000038318.jpg" alt="Screenshot 6" /></div>
+  <div class="screenshot"><img src="1000038319.jpg" alt="Screenshot 7" /></div>
+  <div class="screenshot"><img src="1000038320.jpg" alt="Screenshot 8" /></div>
+  <div class="screenshot"><img src="1000038321.jpg" alt="Screenshot 9" /></div>
+  <div class="screenshot"><img src="1000038322.jpg" alt="Screenshot 10" /></div>
+  <div class="screenshot"><img src="1000038325.jpg" alt="Screenshot 11" /></div>
 
-<section class="hero" id="hero">
-  <h1>Trade Like The Pros & Grow Your Portfolio</h1>
-  <p>Connect your brokerage account, choose your expert trader, and mirror their trades in real-time with our easy-to-use platform.</p>
-  <button class="btn-primary" onclick="window.location.href='signup.html'">Get Started Now</button>
-</section>
-
-<div class="trade-ticker" id="tradeTicker">Loading live trades...</div>
-
-<div class="tradingview-widget-container">
-  <div id="tradingview_abcde"></div>
-  <div style="color:#888; font-size:12px; text-align:center; margin-top: 5px;">
-    <a href="https://www.tradingview.com" target="_blank" rel="noopener" style="color:#888;">Stock Market Chart</a> by TradingView
-  </div>
-</div>
-
-<section class="features" id="features">
-  <h2>Why Choose Virgo Copy Trading?</h2>
-  <div class="feature
+</body>
+</html>
