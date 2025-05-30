@@ -4,140 +4,165 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HMG Copy Trading</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async></script>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
       font-family: 'Inter', sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
+      margin: 0;
+      background: #f9f9f9;
+      color: #333;
     }
     header {
-      background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
+      background-color: #0d1a26;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     header h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      margin: 0;
     }
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-    }
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .cta-buttons a {
-      background: #fff;
-      color: #2563eb;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
+    nav a {
+      color: #fff;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: 600;
-      transition: background 0.3s;
     }
-    .cta-buttons a:hover {
-      background: #e0e7ff;
-    }
-    .section {
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .section h2 {
+    .hero {
+      padding: 80px 20px;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
     }
+    .hero h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .hero button {
+      margin: 10px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-register { background-color: #28a745; color: white; }
+    .btn-login { background-color: #007bff; color: white; }
+    .btn-dashboard { background-color: #ffc107; color: black; }
+
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
     }
-    .feature {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      text-align: center;
+    .feature-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
     }
-    .feature h3 {
-      margin-bottom: 1rem;
-      color: #1e3a8a;
+    .ticker-container {
+      margin-top: -50px;
     }
-    iframe {
-      border: none;
-      width: 100%;
-      height: 420px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    .tradingview-widget-container {
+      padding: 0 20px;
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #1e3a8a;
+    .chat-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #007bff;
       color: white;
-      font-size: 0.9rem;
+      padding: 12px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+    .footer {
+      background: #222;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .footer small {
+      display: block;
+      margin-top: 10px;
+      font-size: 0.85em;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>HMG Copy Trading</h1>
-    <p>A trading platform for online trading and investments from the broker HMG COPY TRADING. Start earning money with millions of traders worldwide!</p>
-    <div class="cta-buttons">
+    <h1>HMG COPY TRADING</h1>
+    <nav>
       <a href="#register">Register</a>
       <a href="#login">Login</a>
-      <a href="#copy-trading">Copy Trading</a>
       <a href="#dashboard">Dashboard</a>
-    </div>
+    </nav>
   </header>
 
-  <section class="section">
-    <h2>Why Choose HMG?</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>Real-Time Copy Trading</h3>
-        <p>Connect with experienced traders and mirror their trades instantly.</p>
-      </div>
-      <div class="feature">
-        <h3>Live Market Prices</h3>
-        <p>Track cryptocurrency, stock, and forex markets all in one place.</p>
-      </div>
-      <div class="feature">
-        <h3>Advanced Dashboard</h3>
-        <p>Access all your performance analytics, trade history, and profit reports.</p>
-      </div>
-      <div class="feature">
-        <h3>Trusted and Secure</h3>
-        <p>Top-notch security to protect your investments and personal data.</p>
-      </div>
+  <section class="hero">
+    <h2>A trading platform for online trading and investments from the broker HMG COPY TRADING.<br>Start earning money with millions of traders worldwide!</h2>
+    <button class="btn-register">Register</button>
+    <button class="btn-login">Login</button>
+    <button class="btn-dashboard">Dashboard</button>
+  </section>
+
+  <section class="ticker-container">
+    <div class="tradingview-widget-container">
+      <script type="text/javascript">
+        new TradingView.widget({
+          "symbols": [
+            {"proName": "BINANCE:BTCUSDT", "title": "Bitcoin"},
+            {"proName": "OANDA:EURUSD", "title": "EUR/USD"},
+            {"proName": "NASDAQ:AAPL", "title": "Apple"},
+            {"proName": "FX_IDC:USDJPY", "title": "USD/JPY"},
+            {"proName": "BINANCE:ETHUSDT", "title": "Ethereum"}
+          ],
+          "showSymbolLogo": true,
+          "colorTheme": "light",
+          "isTransparent": false,
+          "displayMode": "adaptive",
+          "locale": "en"
+        });
+      </script>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Live Crypto Prices</h2>
-    <iframe src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.html" height="50"></iframe>
+  <section class="features">
+    <div class="feature-card">
+      <h3>Start Copy Trading</h3>
+      <p>Join top-performing traders and copy their strategies with ease.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Secure & Reliable</h3>
+      <p>Fully secured with certified compliance and licensed services.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Live Market Data</h3>
+      <p>Get real-time crypto, forex, and stock data streamed live.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Professional Support</h3>
+      <p>Reach out anytime via live chat with our customer support team.</p>
+    </div>
   </section>
 
-  <section class="section">
-    <h2>Live Market Charts</h2>
-    <iframe src="https://www.tradingview.com/widgetembed/?frameElementId=tradingview_d63b5&symbol=NASDAQ%3AAAPL&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=Light&style=1&timezone=Etc%2FUTC&hideideas=1" allowtransparency="true" scrolling="no"></iframe>
-  </section>
+  <div class="chat-widget">💬 Chat With Us</div>
 
-  <footer>
-    <p>&copy; 2025 HMG Copy Trading. All rights reserved.</p>
+  <footer class="footer">
+    <div>
+      <strong>HMG Copy Trading</strong><br>
+      Certified Broker - Reg. No. 102837-BROK-REG<br>
+      Address: 12 Market St, London, UK
+    </div>
+    <small>&copy; 2025 HMG Copy Trading. All rights reserved.</small>
   </footer>
 </body>
 </html>
+
