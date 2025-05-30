@@ -3,131 +3,203 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Virgo Copy Trading</title>
+  <title>Virgo COPY TRADING</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+      margin: 0; padding: 0; background: #f9f9f9; color: #333;
     }
     header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    h1 {
-      color: #0077cc;
-      margin-bottom: 10px;
-    }
-    p {
-      max-width: 600px;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-    button {
-      background-color: #0077cc;
+      background: #004d99;
       color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      cursor: default;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    main h2 {
+      margin-top: 50px;
+      font-size: 28px;
+    }
+    button#getStartedBtn {
+      background-color: #007bff;
+      color: white;
+      font-size: 18px;
       border: none;
-      padding: 12px 24px;
-      font-size: 16px;
+      padding: 14px 30px;
       border-radius: 5px;
       cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
-    button:hover {
-      background-color: #005fa3;
+    button#getStartedBtn:hover {
+      background-color: #0056b3;
     }
-    /* Modal styles */
-    .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 1; 
+    ul {
+      list-style-type: none;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      background: #eee;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+
+    /* Signup Modal styles */
+    #signupModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
       left: 0; top: 0;
-      width: 100%; height: 100%; 
-      overflow: auto; 
+      width: 100%; height: 100%;
       background-color: rgba(0,0,0,0.5);
     }
-    .modal-content {
-      background-color: #fff;
-      margin: 10% auto; 
+    #signupModal > div {
+      background: white;
+      margin: 10% auto;
       padding: 20px;
-      border-radius: 8px;
+      width: 90%;
       max-width: 400px;
+      border-radius: 8px;
       position: relative;
+      text-align: left;
     }
-    .close {
-      color: #aaa;
+    #closeModal {
       position: absolute;
       right: 15px;
       top: 10px;
       font-size: 24px;
-      font-weight: bold;
       cursor: pointer;
     }
-    label {
-      display: block;
-      margin: 15px 0 5px;
+    #signupModal label {
+      font-weight: bold;
     }
-    input[type="text"], input[type="email"] {
+    #signupModal input {
       width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      box-sizing: border-box;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 4px;
+      box-sizing: border-box;
     }
-    button.submit-btn {
-      margin-top: 20px;
+    #signupModal button {
       width: 100%;
+      background-color: #007bff;
+      border: none;
+      padding: 12px;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #signupModal button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to Virgo Copy Trading</h1>
-    <p>Trade like the pros and grow your portfolio easily.</p>
+<header>
+  <h1>Virgo COPY TRADING</h1>
+  <nav>
+    <a href="#howItWorks">How It Works</a>
+    <a href="#" id="navGetStartedBtn">Get Started</a>
+  </nav>
+</header>
+
+<main>
+  <section id="welcome">
+    <h2>A trading platform for online trading and investments from the broker Virgo COPY TRADING.</h2>
+    <p>Start earning money with millions of traders worldwide!</p>
     <button id="getStartedBtn">Get Started Now</button>
-  </header>
+  </section>
 
-  <!-- The Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <form action="https://formspree.io/f/meokjgnl" method="POST">
-        <h2>Sign Up</h2>
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" required />
-        <label for="email">Email</label>
-        <input id="email" type="email" name="_replyto" required />
-        <button class="submit-btn" type="submit">Submit</button>
-      </form>
-    </div>
+  <section id="howItWorks">
+    <h2>How It Works</h2>
+    <ul>
+      <li>1. Sign up and link your account</li>
+      <li>2. Select a pro trader to follow</li>
+      <li>3. Trades are copied automatically</li>
+      <li>4. Watch your portfolio grow</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Virgo COPY TRADING | All rights reserved
+</footer>
+
+<!-- Signup Form Modal -->
+<div id="signupModal">
+  <div>
+    <span id="closeModal">&times;</span>
+    <form action="https://formspree.io/f/meokjgnl" method="POST">
+      <h2>Sign Up</h2>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required />
+      <label for="email">Email</label>
+      <input id="email" name="_replyto" type="email" required />
+      <button type="submit">Submit</button>
+    </form>
   </div>
+</div>
 
-  <script>
-    const modal = document.getElementById("signupModal");
-    const btn = document.getElementById("getStartedBtn");
-    const span = document.getElementById("closeModal");
+<script>
+  // Modal open/close
+  const getStartedBtn = document.getElementById('getStartedBtn');
+  const navGetStartedBtn = document.getElementById('navGetStartedBtn');
+  const modal = document.getElementById('signupModal');
+  const closeBtn = document.getElementById('closeModal');
 
-    btn.onclick = function() {
-      modal.style.display = "block";
+  function openModal() {
+    modal.style.display = 'block';
+  }
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  getStartedBtn.onclick = openModal;
+  navGetStartedBtn.onclick = openModal;
+  closeBtn.onclick = closeModal;
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
     }
-
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+  }
+</script>
 
 </body>
 </html>
