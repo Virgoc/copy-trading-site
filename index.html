@@ -3,300 +3,291 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Virgo COPY TRADING - Trade Like The Pros</title>
+  <title>Virgoc Copy Trading</title>
   <style>
     /* Reset */
     * {
       box-sizing: border-box;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f6f8;
+      background: #f9f9f9;
       color: #222;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     a {
-      color: #007bff;
+      color: #0066ff;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-
-    /* Header */
-    header {
-      position: fixed;
-      width: 100%;
-      background: #0a2540;
+    button {
+      cursor: pointer;
+      background-color: #0066ff;
+      border: none;
       color: white;
-      padding: 15px 30px;
+      padding: 10px 25px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #004bb5;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px 10%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
       top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
     }
     header h1 {
-      font-size: 24px;
-      font-weight: 700;
-      cursor: default;
-      letter-spacing: 2px;
+      font-size: 1.8rem;
+      letter-spacing: 3px;
+      font-weight: 900;
     }
     nav a {
-      margin-left: 25px;
+      margin-left: 20px;
       font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
     }
 
     /* Hero */
     #hero {
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      background: linear-gradient(135deg, #0066ff, #004bb5);
       color: white;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 80px 10%;
       text-align: center;
-      padding: 0 20px;
-      padding-top: 80px; /* header space */
     }
     #hero h2 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      max-width: 800px;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      font-weight: 900;
     }
     #hero p {
       font-size: 1.3rem;
-      max-width: 600px;
       margin-bottom: 30px;
     }
-    #hero button {
-      background: #ff6b00;
-      border: none;
-      padding: 18px 40px;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 50px;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
+
+    /* Live trades ticker */
+    #live-trades {
+      background: #222;
+      color: #0f0;
+      padding: 15px 10%;
+      font-family: monospace;
+      font-weight: 600;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
     }
-    #hero button:hover {
-      background: #e35a00;
+    #trade-ticker {
+      display: inline-block;
+      animation: tickerAnim 12s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes tickerAnim {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
     }
 
-    /* Sections */
+    /* Section styles */
     section {
-      padding: 80px 20px 60px;
-      max-width: 900px;
-      margin: 0 auto;
+      padding: 50px 10%;
     }
-    h3 {
-      font-size: 2.2rem;
-      margin-bottom: 25px;
+
+    /* Traders showcase */
+    #traders {
+      background: white;
       text-align: center;
-      color: #0a2540;
+    }
+    #traders h3 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    .trader-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .trader {
+      background: #f0f0f0;
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 250px;
+      flex: 1 1 200px;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+      transition: transform 0.3s ease;
+    }
+    .trader:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.15);
+    }
+    .trader img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+    .trader h4 {
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .trader p {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #555;
     }
 
     /* Features */
-    #features ul {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 30px;
-      padding: 0 10px;
+    #features {
+      background: #f5faff;
+      text-align: center;
     }
-    #features li {
+    #features h3 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    .feature {
+      max-width: 300px;
       background: white;
-      border-radius: 12px;
-      padding: 25px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      font-size: 1.1rem;
-      color: #333;
-      line-height: 1.5;
-      position: relative;
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      flex: 1 1 250px;
+      transition: box-shadow 0.3s ease;
     }
-    #features li::before {
-      content: "✔";
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      color: #ff6b00;
+    .feature:hover {
+      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #0066ff;
+    }
+    .feature h4 {
+      margin-bottom: 15px;
       font-weight: 700;
       font-size: 1.3rem;
     }
-    #features li strong {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: #0a2540;
-    }
-
-    /* Pricing */
-    #pricing {
-      background: white;
-      border-radius: 15px;
-      padding: 40px 30px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      max-width: 400px;
-      margin: 0 auto 60px;
-    }
-    #pricing h4 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: #0a2540;
-    }
-    #pricing p {
-      font-size: 1.1rem;
-      margin-bottom: 30px;
+    .feature p {
       color: #555;
-    }
-    #pricing .price {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #ff6b00;
-      margin-bottom: 30px;
-    }
-    #pricing button {
-      background: #ff6b00;
-      border: none;
-      padding: 15px 50px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 50px;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
-    }
-    #pricing button:hover {
-      background: #e35a00;
-    }
-
-    /* FAQ */
-    #faq dl {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    #faq dt {
-      font-weight: 700;
-      margin-top: 20px;
-      cursor: pointer;
-      background: #f1f1f1;
-      padding: 15px 20px;
-      border-radius: 10px;
-      transition: background 0.3s ease;
-    }
-    #faq dt:hover {
-      background: #eaeaea;
-    }
-    #faq dd {
-      margin: 5px 0 15px 15px;
-      display: none;
       font-size: 1rem;
-      line-height: 1.4;
-    }
-    #faq dd.show {
-      display: block;
     }
 
     /* Footer */
     footer {
-      background: #0a2540;
+      background: #111;
       color: white;
+      padding: 30px 10%;
       text-align: center;
-      padding: 25px 20px;
-      font-size: 14px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    footer a {
+      color: #66aaff;
+      margin: 0 10px;
+      font-weight: 600;
     }
 
     /* Signup Modal */
-    #signupModal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      justify-content: center;
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 2000; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%;
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.6); 
       align-items: center;
+      justify-content: center;
     }
-    #signupModal.show {
-      display: flex;
-    }
-    #signupModal > div {
-      background: white;
-      border-radius: 15px;
-      padding: 30px 35px 35px;
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      border-radius: 10px;
+      padding: 30px 40px;
       max-width: 400px;
-      width: 90%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
       position: relative;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
-    #closeModal {
+    .close-btn {
       position: absolute;
-      top: 15px; right: 20px;
-      font-size: 26px;
+      top: 15px;
+      right: 20px;
+      font-size: 1.5rem;
       font-weight: 700;
+      color: #333;
       cursor: pointer;
-      color: #666;
     }
-    #signupModal form {
-      display: flex;
-      flex-direction: column;
+    .modal-content h3 {
+      margin-bottom: 20px;
+      font-weight: 700;
     }
-    #signupModal label {
-      margin: 12px 0 5px;
+    .modal-content label {
+      display: block;
+      margin: 15px 0 5px;
       font-weight: 600;
-      color: #222;
     }
-    #signupModal input {
-      padding: 10px 12px;
-      font-size: 16px;
+    .modal-content input[type="text"],
+    .modal-content input[type="email"],
+    .modal-content input[type="password"] {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 10px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      outline-offset: 2px;
+      border-radius: 5px;
+      font-size: 1rem;
     }
-    #signupModal button[type="submit"] {
-      margin-top: 25px;
-      background: #ff6b00;
-      border: none;
-      padding: 14px 0;
-      font-size: 18px;
-      font-weight: 700;
-      color: white;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
-    }
-    #signupModal button[type="submit"]:hover {
-      background: #e35a00;
+    .modal-content button {
+      width: 100%;
+      margin-top: 15px;
     }
 
     /* Responsive */
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       #hero h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
-      #hero p {
-        font-size: 1.1rem;
+      .features-list, .trader-list {
+        flex-direction: column;
+        gap: 20px;
       }
       header {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 20px;
+        gap: 10px;
       }
       nav a {
         margin-left: 0;
         margin-right: 15px;
-        font-size: 14px;
       }
     }
   </style>
@@ -304,4 +295,142 @@
 <body>
 
 <header>
-  <h1>Virgo COPY TRADING</h1>
+  <h1>Virgoc</h1>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#features">Features</a>
+    <a href="#traders">Traders</a>
+    <a href="#" id="openSignupBtn">Sign Up</a>
+  </nav>
+</header>
+
+<section id="hero">
+  <h2>A trading platform for online trading and investments from the broker VIRGOC COPY TRADING</h2>
+  <p>Start earning money with millions of traders worldwide!</p>
+  <button id="getStartedBtn">Get Started Now</button>
+</section>
+
+<section id="live-trades">
+  <div id="trade-ticker">Loading live trades...</div>
+</section>
+
+<section id="features">
+  <h3>Why Choose Virgoc Copy Trading?</h3>
+  <div class="features-list">
+    <div class="feature">
+      <div class="feature-icon">🤝</div>
+      <h4>Copy Pro Traders</h4>
+      <p>Mirror successful expert traders’ moves automatically.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h4>Real-Time Execution</h4>
+      <p>Trades are copied instantly with zero delay.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h4>Secure & Private</h4>
+      <p>Your data and funds remain safe and confidential.</p>
+    </div>
+  </div>
+</section>
+
+<section id="traders">
+  <h3>Meet Some of Our Top Traders</h3>
+  <div class="trader-list">
+    <div class="trader">
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Trader John" />
+      <h4>John D.</h4>
+      <p>"Virgoc helped me grow my account 5x in 6 months."</p>
+    </div>
+    <div class="trader">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Trader Lisa" />
+      <h4>Lisa M.</h4>
+      <p>"The live copying is seamless and effortless."</p>
+    </div>
+    <div class="trader">
+      <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="Trader Mike" />
+      <h4>Mike S.</h4>
+      <p>"I love the community and support from Virgoc."</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Contact us: support@virgoc.com | Follow us: 
+    <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+  </p>
+  <p>© 2025 Virgoc Copy Trading. All rights reserved.</p>
+</footer>
+
+<!-- Signup Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeSignup">&times;</span>
+    <h3>Sign Up</h3>
+    <form action="https://formspree.io/f/meokjgnl" method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" required />
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Live trade ticker scroll text (looping through messages)
+  const trades = [
+    "User123 bought 100 shares of XYZ at $50.23",
+    "TraderMike copied trade: Sell 50 shares of ABC at $12.10",
+    "Anna opened a new position: 200 shares of DEF at $23.45",
+    "CopyTraderJoe earned +3.2% in last 10 minutes",
+    "New copy trade started by Sarah on GHI",
+    "Mark closed a profitable trade on JKL",
+    "Emily copied a new trade in real-time"
+  ];
+  const ticker = document.getElementById('trade-ticker');
+  let tickerIndex = 0;
+  
+  function updateTicker() {
+    ticker.textContent = trades[tickerIndex];
+    tickerIndex = (tickerIndex + 1) % trades.length;
+  }
+  
+  updateTicker();
+  setInterval(updateTicker, 4000);
+
+  // Signup modal open/close
+  const signupModal = document.getElementById('signupModal');
+  const openSignupBtn = document.getElementById('openSignupBtn');
+  const closeSignupBtn = document.getElementById('closeSignup');
+
+  openSignupBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    signupModal.style.display = 'flex';
+  });
+
+  closeSignupBtn.addEventListener('click', () => {
+    signupModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === signupModal) {
+      signupModal.style.display = 'none';
+    }
+  });
+
+  // Get Started button opens signup modal too
+  const getStartedBtn = document.getElementById('getStartedBtn');
+  getStartedBtn.addEventListener('click', () => {
+    signupModal.style.display = 'flex';
+  });
+</script>
+
+</body>
+</html>
