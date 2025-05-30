@@ -3,129 +3,297 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Virgo COPY TRADING</title>
+  <title>Virgo COPY TRADING - Trade Like The Pros</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0; background: #f9f9f9; color: #333;
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
     }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header */
     header {
-      background: #004d99;
+      position: fixed;
+      width: 100%;
+      background: #0a2540;
       color: white;
-      padding: 15px 20px;
+      padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 999;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     header h1 {
-      margin: 0;
       font-size: 24px;
+      font-weight: 700;
       cursor: default;
+      letter-spacing: 2px;
     }
     nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-    main h2 {
-      margin-top: 50px;
-      font-size: 28px;
-    }
-    button#getStartedBtn {
-      background-color: #007bff;
-      color: white;
-      font-size: 18px;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-    button#getStartedBtn:hover {
-      background-color: #0056b3;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      font-size: 18px;
-      line-height: 1.6;
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      background: #eee;
-      font-size: 14px;
-      color: #666;
-      text-align: center;
+      margin-left: 25px;
+      font-weight: 600;
+      font-size: 16px;
     }
 
-    /* Signup Modal styles */
+    /* Hero */
+    #hero {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      padding-top: 80px; /* header space */
+    }
+    #hero h2 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      max-width: 800px;
+    }
+    #hero p {
+      font-size: 1.3rem;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    #hero button {
+      background: #ff6b00;
+      border: none;
+      padding: 18px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
+    }
+    #hero button:hover {
+      background: #e35a00;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h3 {
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #0a2540;
+    }
+
+    /* Features */
+    #features ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 30px;
+      padding: 0 10px;
+    }
+    #features li {
+      background: white;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.5;
+      position: relative;
+    }
+    #features li::before {
+      content: "✔";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      color: #ff6b00;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    #features li strong {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #0a2540;
+    }
+
+    /* Pricing */
+    #pricing {
+      background: white;
+      border-radius: 15px;
+      padding: 40px 30px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto 60px;
+    }
+    #pricing h4 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #0a2540;
+    }
+    #pricing p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+    #pricing .price {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ff6b00;
+      margin-bottom: 30px;
+    }
+    #pricing button {
+      background: #ff6b00;
+      border: none;
+      padding: 15px 50px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
+    }
+    #pricing button:hover {
+      background: #e35a00;
+    }
+
+    /* FAQ */
+    #faq dl {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    #faq dt {
+      font-weight: 700;
+      margin-top: 20px;
+      cursor: pointer;
+      background: #f1f1f1;
+      padding: 15px 20px;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+    #faq dt:hover {
+      background: #eaeaea;
+    }
+    #faq dd {
+      margin: 5px 0 15px 15px;
+      display: none;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    #faq dd.show {
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a2540;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+    }
+
+    /* Signup Modal */
     #signupModal {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 9999;
       left: 0; top: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
     }
     #signupModal > div {
       background: white;
-      margin: 10% auto;
-      padding: 20px;
-      width: 90%;
+      border-radius: 15px;
+      padding: 30px 35px 35px;
       max-width: 400px;
-      border-radius: 8px;
+      width: 90%;
       position: relative;
-      text-align: left;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
     }
-    #closeModal {
+    #signupModal #closeModal {
       position: absolute;
-      right: 15px;
-      top: 10px;
-      font-size: 24px;
+      top: 15px; right: 20px;
+      font-size: 26px;
+      font-weight: 700;
       cursor: pointer;
+      color: #666;
+    }
+    #signupModal form {
+      display: flex;
+      flex-direction: column;
     }
     #signupModal label {
-      font-weight: bold;
+      margin: 12px 0 5px;
+      font-weight: 600;
+      color: #222;
     }
     #signupModal input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 4px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    #signupModal button {
-      width: 100%;
-      background-color: #007bff;
-      border: none;
-      padding: 12px;
-      color: white;
+      padding: 10px 12px;
       font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline-offset: 2px;
     }
-    #signupModal button:hover {
-      background-color: #0056b3;
+    #signupModal button[type="submit"] {
+      margin-top: 25px;
+      background: #ff6b00;
+      border: none;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255,107,0,0.4);
+    }
+    #signupModal button[type="submit"]:hover {
+      background: #e35a00;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      #hero h2 {
+        font-size: 2.2rem;
+      }
+      #hero p {
+        font-size: 1.1rem;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -134,72 +302,39 @@
 <header>
   <h1>Virgo COPY TRADING</h1>
   <nav>
-    <a href="#howItWorks">How It Works</a>
-    <a href="#" id="navGetStartedBtn">Get Started</a>
+    <a href="#hero">Home</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#" id="navSignupBtn">Sign Up</a>
   </nav>
 </header>
 
-<main>
-  <section id="welcome">
-    <h2>A trading platform for online trading and investments from the broker Virgo COPY TRADING.</h2>
-    <p>Start earning money with millions of traders worldwide!</p>
-    <button id="getStartedBtn">Get Started Now</button>
-  </section>
+<section id="hero">
+  <h2>Trade Like The Pros With Virgo COPY TRADING</h2>
+  <p>Join thousands of traders worldwide. Copy expert trades automatically and grow your portfolio.</p>
+  <button id="heroSignupBtn">Get Started Now</button>
+</section>
 
-  <section id="howItWorks">
-    <h2>How It Works</h2>
-    <ul>
-      <li>1. Sign up and link your account</li>
-      <li>2. Select a pro trader to follow</li>
-      <li>3. Trades are copied automatically</li>
-      <li>4. Watch your portfolio grow</li>
-    </ul>
-  </section>
-</main>
+<section id="features">
+  <h3>Why Choose Virgo COPY TRADING?</h3>
+  <ul>
+    <li><strong>Real-time Trade Copying:</strong> Automatically mirror expert traders’ moves without lifting a finger.</li>
+    <li><strong>Trusted Broker:</strong> Safe and regulated trading platform.</li>
+    <li><strong>Easy Setup:</strong> Connect your account in minutes, no complex setup required.</li>
+    <li><strong>Flexible Control:</strong> Choose who to follow and adjust anytime.</li>
+  </ul>
+</section>
 
-<footer>
-  &copy; 2025 Virgo COPY TRADING | All rights reserved
-</footer>
-
-<!-- Signup Form Modal -->
-<div id="signupModal">
+<section id="pricing">
+  <h3>Pricing Plans</h3>
   <div>
-    <span id="closeModal">&times;</span>
-    <form action="https://formspree.io/f/meokjgnl" method="POST">
-      <h2>Sign Up</h2>
-      <label for="name">Name</label>
-      <input id="name" name="name" type="text" required />
-      <label for="email">Email</label>
-      <input id="email" name="_replyto" type="email" required />
-      <button type="submit">Submit</button>
-    </form>
+    <h4>Free Trial - 30 Days</h4>
+    <p>Start your journey risk-free. Experience full access to all features.</p>
+    <div class="price">Free</div>
+    <button id="pricingSignupBtn">Sign Up Now</button>
   </div>
-</div>
+</section>
 
-<script>
-  // Modal open/close
-  const getStartedBtn = document.getElementById('getStartedBtn');
-  const navGetStartedBtn = document.getElementById('navGetStartedBtn');
-  const modal = document.getElementById('signupModal');
-  const closeBtn = document.getElementById('closeModal');
-
-  function openModal() {
-    modal.style.display = 'block';
-  }
-  function closeModal() {
-    modal.style.display = 'none';
-  }
-
-  getStartedBtn.onclick = openModal;
-  navGetStartedBtn.onclick = openModal;
-  closeBtn.onclick = closeModal;
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      closeModal();
-    }
-  }
-</script>
-
-</body>
-</html>
+<section id="faq">
+  <h3>Frequently Asked Questions</h3>
