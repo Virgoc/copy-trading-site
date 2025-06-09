@@ -1,168 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HMG Copy Trading</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background-color: #0d1a26;
-      color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 600;
-    }
-    .hero {
-      padding: 80px 20px;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
-      color: #fff;
-      text-align: center;
-    }
-    .hero h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    .hero button {
-      margin: 10px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .btn-register { background-color: #28a745; color: white; }
-    .btn-login { background-color: #007bff; color: white; }
-    .btn-dashboard { background-color: #ffc107; color: black; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>zlcCopyTrading - Effortless Copy Trading for Smart Investors</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background: #f9fafb;
+    color: #222;
+  }
+  header {
+    background: #1A237E;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+  }
+  header p {
+    margin: 10px 0 30px;
+    font-size: 1.2rem;
+  }
+  header .btn {
+    background: #00BFA5;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  section {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+  }
+  .two-column {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .two-column .text {
+    flex: 1;
+    min-width: 280px;
+  }
+  .two-column .image {
+    flex: 1;
+    min-width: 280px;
+    text-align: center;
+  }
+  .two-column .image img {
+    max-width: 100%;
+    height: auto;
+  }
+  h2 {
+    color: #1A237E;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .steps {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .step {
+    background: white;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 220px;
+    text-align: center;
+  }
+  .step h3 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #1A237E;
+  }
+  .step p {
+    font-size: 1rem;
+    color: #555;
+  }
+  ul.features {
+    list-style: none;
+    padding: 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  ul.features li {
+    margin: 12px 0;
+    font-size: 1.1rem;
+    padding-left: 28px;
+    position: relative;
+  }
+  ul.features li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #00BFA5;
+  }
+  footer {
+    background: #1A237E;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  footer .btn {
+    background: #00BFA5;
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+  }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  @media (max-width: 700px) {
+    .two-column {
+      flex-direction: column;
+    }
+    .steps {
+      flex-direction: column;
       gap: 20px;
-      padding: 40px;
     }
-    .feature-card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-    }
-    .ticker-container {
-      margin-top: -50px;
-    }
-    .tradingview-widget-container {
-      padding: 0 20px;
-    }
-    .chat-widget {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #007bff;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 999;
-    }
-    .footer {
-      background: #222;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .footer small {
-      display: block;
-      margin-top: 10px;
-      font-size: 0.85em;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>HMG COPY TRADING</h1>
-    <nav>
-      <a href="#register">Register</a>
-      <a href="#login">Login</a>
-      <a href="#dashboard">Dashboard</a>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h2>A trading platform for online trading and investments from the broker HMG COPY TRADING.<br>Start earning money with millions of traders worldwide!</h2>
-    <button class="btn-register">Register</button>
-    <button class="btn-login">Login</button>
-    <button class="btn-dashboard">Dashboard</button>
-  </section>
+<header>
+  <h1>Effortless Copy Trading for Smart Investors</h1>
+  <p>Mirror professional trades with confidence. Transparent, reliable, and tailored to your goals.</p>
+  <a href="#" class="btn">Get Started Today</a>
+</header>
 
-  <section class="ticker-container">
-    <div class="tradingview-widget-container">
-      <script type="text/javascript">
-        new TradingView.widget({
-          "symbols": [
-            {"proName": "BINANCE:BTCUSDT", "title": "Bitcoin"},
-            {"proName": "OANDA:EURUSD", "title": "EUR/USD"},
-            {"proName": "NASDAQ:AAPL", "title": "Apple"},
-            {"proName": "FX_IDC:USDJPY", "title": "USD/JPY"},
-            {"proName": "BINANCE:ETHUSDT", "title": "Ethereum"}
-          ],
-          "showSymbolLogo": true,
-          "colorTheme": "light",
-          "isTransparent": false,
-          "displayMode": "adaptive",
-          "locale": "en"
-        });
-      </script>
+<section>
+  <div class="two-column">
+    <div class="text">
+      <h2>About Us</h2>
+      <p>At <strong>zlcCopyTrading</strong>, we provide a cutting-edge platform that empowers traders of all levels to access expert strategies and automatically mirror trades in real time. Our mission is to simplify trading and maximize your portfolio’s potential with full transparency.</p>
     </div>
-  </section>
+    <div class="image">
+      <img src="https://via.placeholder.com/400x250?text=Copy+Trading+Platform" alt="Copy Trading Illustration" />
+    </div>
+  </div>
+</section>
 
-  <section class="features">
-    <div class="feature-card">
-      <h3>Start Copy Trading</h3>
-      <p>Join top-performing traders and copy their strategies with ease.</p>
+<section>
+  <h2>How It Works</h2>
+  <div class="steps">
+    <div class="step">
+      <img src="https://via.placeholder.com/64?text=1" alt="Step 1" />
+      <h3>Sign Up & Connect Your Account</h3>
+      <p>Securely link your brokerage account to our platform.</p>
     </div>
-    <div class="feature-card">
-      <h3>Secure & Reliable</h3>
-      <p>Fully secured with certified compliance and licensed services.</p>
+    <div class="step">
+      <img src="https://via.placeholder.com/64?text=2" alt="Step 2" />
+      <h3>Choose Strategies</h3>
+      <p>Select from our curated list of expert traders and strategies tailored to your risk preferences.</p>
     </div>
-    <div class="feature-card">
-      <h3>Live Market Data</h3>
-      <p>Get real-time crypto, forex, and stock data streamed live.</p>
+    <div class="step">
+      <img src="https://via.placeholder.com/64?text=3" alt="Step 3" />
+      <h3>Start Copying</h3>
+      <p>Your account will automatically mirror trades with no manual input required.</p>
     </div>
-    <div class="feature-card">
-      <h3>Professional Support</h3>
-      <p>Reach out anytime via live chat with our customer support team.</p>
+    <div class="step">
+      <img src="https://via.placeholder.com/64?text=4" alt="Step 4" />
+      <h3>Track Performance</h3>
+      <p>Use our real-time dashboards to monitor your profits, risks, and strategy metrics.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="chat-widget">💬 Chat With Us</div>
+<section>
+  <h2>Why Choose zlcCopyTrading?</h2>
+  <ul class="features">
+    <li>Verified Track Records: Only top-performing strategies make the cut.</li>
+    <li>Flexible Risk Controls: Customize risk settings to fit your comfort level.</li>
+    <li>Transparent Fees: Clear, upfront pricing with no hidden charges.</li>
+    <li>Dedicated Support: Our expert team is available to assist you whenever needed.</li>
+  </ul>
+</section>
 
-  <footer class="footer">
-    <div>
-      <strong>HMG Copy Trading</strong><br>
-      Certified Broker - Reg. No. 102837-BROK-REG<br>
-      Address: 12 Market St, London, UK
-    </div>
-    <small>&copy; 2025 HMG Copy Trading. All rights reserved.</small>
-  </footer>
+<footer>
+  <p>Ready to elevate your trading?</p>
+  <a href="#" class="btn">Join zlcCopyTrading now</a>
+</footer>
+
 </body>
 </html>
-
